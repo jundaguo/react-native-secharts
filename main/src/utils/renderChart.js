@@ -23,6 +23,14 @@ const renderChart = (props) => {
         });
         window.ReactNativeWebView.postMessage(JSON.stringify({"types":"ON_PRESS","payload": paramsString}));
       });
+
+      myChart.getZr().off('click')
+      myChart.getZr().on('click', params=>{
+        let pointInPixel = [params.offsetX, params.offsetY]
+        if (!myChart.containPixel('grid', pointInPixel)) return
+        let [index] = myChart.convertFromPixel({ seriesIndex: 0 }, pointInPixel)
+        window.ReactNativeWebView.postMessage(JSON.stringify({"types":"ON_FULL_PRESS", "payload": index}));
+      })
     `
 }
 

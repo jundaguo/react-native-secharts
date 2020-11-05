@@ -71,6 +71,9 @@ class Echarts extends Component {
       case 'ON_PRESS':
         this.props.onPress(JSON.parse(data.payload))
         break;
+      case 'ON_FULL_PRESS':
+        this.props.onFullPress(JSON.parse(data.payload))
+        break;
       case 'GET_IMAGE':
         this.setState({data}, () => {
           console.log(this.state.data)
