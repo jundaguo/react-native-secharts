@@ -64,15 +64,15 @@ class Echarts extends Component {
   }
 
   _handleMessage = (event) => {
-    event.persist()
+    if (event.persist) event.persist()
     if (!event) return null;
     const data = JSON.parse(event.nativeEvent.data)
     switch (data.types) {
       case 'ON_PRESS':
         this.props.onPress(JSON.parse(data.payload))
         break;
-      case 'ON_FULL_PRESS':
-        this.props.onFullPress(JSON.parse(data.payload))
+    case 'ON_FULL_PRESS':
+        this.props.onFullPress && this.props.onFullPress(JSON.parse(data.payload))
         break;
       case 'GET_IMAGE':
         this.setState({data}, () => {
