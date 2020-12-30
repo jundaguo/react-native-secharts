@@ -32,7 +32,8 @@ class Echarts extends Component {
 
   static defaultProps = {
     backgroundColor: '#00000000',
-    onPress: () => {}
+    onPress: () => {},
+    onFullPress: () => {}
   }
 
   render() {
@@ -64,8 +65,8 @@ class Echarts extends Component {
   }
 
   _handleMessage = (event) => {
-    if (event.persist) event.persist()
     if (!event) return null;
+    if (event.persist) event.persist()
     const data = JSON.parse(event.nativeEvent.data)
     switch (data.types) {
       case 'ON_PRESS':
